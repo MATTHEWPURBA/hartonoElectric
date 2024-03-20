@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         otherKey:'UserId'
       })
     }
+    get formattedPrice(){
+      return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(this.price)
+    }
   }
   Product.init(
     {
