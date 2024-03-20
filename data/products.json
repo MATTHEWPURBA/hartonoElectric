@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Samsung Galaxy S21",
+    "description": "Flagship smartphone with powerful features.",
+    "price": 12000000,
+    "CategoryId": 1,
+    "stock": 50,
+    "urlPicture": "https://example.com/samsung-galaxy-s21.jpg"
+  },
+  {
+    "name": "iPhone 13 Pro",
+    "description": "Premium smartphone with iOS ecosystem.",
+    "price": 15000000,
+    "CategoryId": 1,
+    "stock": 30,
+    "urlPicture": "https://example.com/iphone-13-pro.jpg"
+  },
+  {
+    "name": "MacBook Pro 2022",
+    "description": "High-performance laptop for professionals.",
+    "price": 25000000,
+    "CategoryId": 2,
+    "stock": 20,
+    "urlPicture": "https://example.com/macbook-pro-2022.jpg"
+  },
+  {
+    "name": "Dell XPS 15",
+    "description": "Sleek and powerful laptop for creators.",
+    "price": 18000000,
+    "CategoryId": 2,
+    "stock": 15,
+    "urlPicture": "https://example.com/dell-xps-15.jpg"
+  },
+  {
+    "name": "LG OLED C1",
+    "description": "Stunning 4K OLED TV for immersive viewing experience.",
+    "price": 20000000,
+    "CategoryId": 3,
+    "stock": 10,
+    "urlPicture": "https://example.com/lg-oled-c1.jpg"
+  },
+  {
+    "name": "Sony Bravia A90J",
+    "description": "Premium 4K HDR TV with impressive picture quality.",
+    "price": 22000000,
+    "CategoryId": 3,
+    "stock": 8,
+    "urlPicture": "https://example.com/sony-bravia-a90j.jpg"
+  },
+  {
+    "name": "Xiaomi Redmi Note 11",
+    "description": "Affordable smartphone with decent performance.",
+    "price": 4000000,
+    "CategoryId": 1,
+    "stock": 60,
+    "urlPicture": "https://example.com/xiaomi-redmi-note-11.jpg"
+  },
+  {
+    "name": "Asus ROG Zephyrus G14",
+    "description": "Gaming laptop with powerful specs in a compact form factor.",
+    "price": 22000000,
+    "CategoryId": 2,
+    "stock": 12,
+    "urlPicture": "https://example.com/asus-rog-zephyrus-g14.jpg"
+  },
+  {
+    "name": "Samsung QN90A Neo QLED",
+    "description": "Top-of-the-line QLED TV with stunning visuals.",
+    "price": 30000000,
+    "CategoryId": 3,
+    "stock": 5,
+    "urlPicture": "https://example.com/samsung-qn90a-neo-qled.jpg"
+  },
+  {
+    "name": "Lenovo Legion 5",
+    "description": "Budget-friendly gaming laptop with solid performance.",
+    "price": 12000000,
+    "CategoryId": 2,
+    "stock": 18,
+    "urlPicture": "https://example.com/lenovo-legion-5.jpg"
+  }
+]
