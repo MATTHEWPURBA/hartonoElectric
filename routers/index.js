@@ -26,5 +26,5 @@ router.get("/", Controller.home);
 router.get("/admin", AdminController.adminPage);
 // router.use("/incubators", require("./incubators"));
 // router.use("/startUp", require("./startUp"));
-
+router.get('/admin', AdminController.adminPage)
 module.exports = router;
