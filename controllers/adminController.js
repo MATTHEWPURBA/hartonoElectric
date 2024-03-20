@@ -10,7 +10,7 @@ class AdminController {
                 order: [['name']]
             })
             // res.send(data)
-            res.render('admin', { data, title: 'Home' })
+            res.render('admin', { data, title: 'Admin' })
         } catch (error) {
             res.send(error)
         }
