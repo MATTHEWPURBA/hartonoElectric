@@ -45,10 +45,16 @@ router.use((req, res, next) => {
 
 router.get("/", Controller.home);
 
+
+
+//admin
 router.get("/admin", AdminController.adminPage);
 
 router.get("/admin/addProduct", AdminController.getFormAdd);
 router.post("/admin/addProduct", AdminController.postFormAdd);
+router.get("/admin/edit/:id", AdminController.getEdit);
+router.post("/admin/edit/:id", AdminController.postEdit);
+
 // router.use("/incubators", require("./incubators"));
 // router.use("/startUp", require("./startUp"));
 

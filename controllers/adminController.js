@@ -46,6 +46,44 @@ class AdminController {
       }
     }
   }
+  static async getEdit(req, res) {
+    try {
+      let {id} = req.params
+      let category = await Category.findAll();
+      let product = await Product.findByPk(id)
+
+      let { error, path } = req.query;
+      res.render("edit-product", { category, product, error, path });
+      // res.send(data)
+    } catch (error) {
+      res.send(error);
+    }
+  }
+  static async postEdit(req, res) {
+    let { id } = req.params
+    try {
+      let { name, price, stock, CategoryId, urlPicture, description } = req.body;
+      // res.send(req.body)
+      await Product.update({ name, price, stock, CategoryId, urlPicture, description }, {
+        where:{
+          id:id
+        }
+      });
+      res.redirect("/admin");
+    } catch (error) {
+      if (error.name == "SequelizeValidationError") {
+        let err = error.errors.map((e) => {
+          return e.message;
+        });
+        let path = error.errors.map((e) => {
+          return e.path;
+        });
+        res.redirect(`/admin/edit/${id}?error=${err}&path=${path}`);
+      } else {
+        res.send(error);
+      }
+    }
+  }
 }
 
 module.exports = AdminController;
