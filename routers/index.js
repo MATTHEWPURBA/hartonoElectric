@@ -24,6 +24,8 @@ router.get("/", Controller.home);
 
 
 router.get("/admin", AdminController.adminPage);
+router.get('/admin/addProduct', AdminController.getFormAdd)
+router.post('/admin/addProduct', AdminController.postFormAdd)
 // router.use("/incubators", require("./incubators"));
 // router.use("/startUp", require("./startUp"));
 
