@@ -14,8 +14,8 @@ class userController {
 
   static async postRegister(req, res) {
     try {
-      let { username, email, password, role } = req.body;
-      await User.create({ username, email, password, role });
+      let { username, email, password } = req.body;
+      await User.create({ username, email, password });
       console.log(req.body);
       console.log("ini dari form register");
       res.redirect("/login");
@@ -27,7 +27,10 @@ class userController {
 
   static loginForm(req, res) {
     try {
-      res.render("auth-pages/login-form");
+      const { error } = req.query;
+      res.render("auth-pages/login-form", { error });
+      // ini untuk menerima query error dari res redirect
+      /**yang /login?error=${error} */
     } catch (error) {
       console.log(error);
       res.send(error.message);
@@ -37,7 +40,47 @@ class userController {
   static postLogin(req, res) {
     try {
       const { username, password } = req.body;
-      User.findOne({ where: { username } });
+      // ini pencarian username dari login form
+      User.findOne({ where: { username } }).then((user) => {
+        //ini mencari user berdasarkan username yang ada di USER dbeaver
+        //baru nanti kalo username input user
+        //sama dengan username yang tersimpan di dbeaver
+        //nanti lanjut ke ifelse dibawah
+        if (user) {
+          const isValidPassword = bcrypt.compareSync(password, user.password);
+          /** ini adalah cara verif password */
+          if (isValidPassword) {
+            //case berhasil login
+            req.session.userId = user.id; //set seession di controller
+            //req.session adalah pemanggilan session
+            // req session ini untuk menyimpan id yang didapat dari input user
+            return res.redirect("/");
+          } else {
+            const error = "invalid username/password";
+            return res.redirect(`/login?error=${error}`);
+          }
+          //ini kalo username nya ga sama dengan yang ada di dbeaver
+        } else {
+          const error = "invalid username/password";
+          return res.redirect(`/login?error=${error}`);
+        }
+
+        /** ini adalah cara verif password */
+      });
+    } catch (error) {
+      console.log(error);
+      res.send(error.message);
+    }
+  }
+
+  static async getLogOut(req, res) {
+    try {
+      req.session.destroy((error) => {
+        if (error) res.send(error);
+        else {
+          res.redirect("/");
+        }
+      });
     } catch (error) {
       console.log(error);
       res.send(error.message);

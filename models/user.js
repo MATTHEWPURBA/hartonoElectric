@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       username: DataTypes.STRING,
+      // {
+      //   validate: {
+      //     unique: true,
+      //   },
+      // },
       password: DataTypes.STRING,
       email: DataTypes.STRING,
       role: DataTypes.STRING,
@@ -27,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         beforeCreate(instance, options) {
+          instance.role = "user";
           //di before create pasti harus ada instance dan options
           console.log(instance, "ini before create");
           const salt = bcrypt.genSaltSync(8);
@@ -34,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
           const hash = bcrypt.hashSync(instance.password, salt);
           // ini adalah proses penambahan garam di dalam
           /** sebuah instance password */
-          instance.password = hash; 
+          instance.password = hash;
           /** ini adalah restructure untuk mengubah
            * password menjadi hasil olahaan penambahan garam dan bumbu
            */

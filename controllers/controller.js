@@ -19,5 +19,7 @@ class Controller {
       res.send(error);
     }
   }
+
+  
 }
 module.exports = Controller;
