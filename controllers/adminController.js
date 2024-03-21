@@ -1,4 +1,5 @@
 const { Cart, Product, User, Category } = require("../models");
+const convert = require('../helper/formatCreated');
 
 class AdminController {
   static async adminPage(req, res) {
@@ -10,7 +11,7 @@ class AdminController {
         order: [["name"]],
       });
       // res.send(data)
-      res.render("admin", { data, title: "Admin" });
+      res.render("admin", { data, title: "Admin", convert:convert });
     } catch (error) {
       res.send(error);
     }

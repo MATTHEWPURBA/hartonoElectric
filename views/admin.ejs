@@ -18,6 +18,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Image</th>
                 <th scope="col">Product Name</th>
+                <th scope="col">Created</th>
                 <th scope="col">Category</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Action</th>
@@ -29,6 +30,7 @@
                   <td><%= i+1 %></td>
                   <td><img src="<%= e.urlPicture %>" alt="image of <%= e.name %>" style="width: 50px;"></td>
                   <td style="text-align: left;"><%= e.name %></td>
+                  <td style="text-align: left;"><%= convert(e.createdAt) %></td>
                   <td style="text-align: left;"><%= e.Category.name %></td>
                   <td><%= e.stock %></td>
                   <td>
