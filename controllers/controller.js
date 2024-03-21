@@ -1,6 +1,7 @@
 const { Cart, Product, User, Category, UserProfile } = require("../models");
 const { Op, where } = require('sequelize');
 const formatCurrency = require('../helper/formatCurrency');
+const qrcode = require('qrcode');
 
 class Controller {
   static async home(req, res) {
@@ -42,9 +43,12 @@ class Controller {
           model: UserProfile
         }
       })
-      console.log(user);
-      res.render('user', {title:'User Details', user })
-      // res.send(user)
+      const urlVideo = `https://www.youtube.com/watch?v=dQw4w9WgXcQ`;
+
+      qrcode.toDataURL(urlVideo, (err, url) => {
+        if (err) throw err;
+        res.render('user', { title: 'User Details', user, qrCodeURL: url });
+      });
     } catch (error) {
       res.send(error)
     }
