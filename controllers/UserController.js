@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, UserProfile } = require("../models");
 const bcrypt = require("bcryptjs");
 //kalau pake package harus di bikin require
 
@@ -15,9 +15,18 @@ class userController {
   static async postRegister(req, res) {
     try {
       let { username, email, password } = req.body;
-      await User.create({ username, email, password });
+      let data = await User.create({ username, email, password });
       console.log(req.body);
       console.log("ini dari form register");
+      await UserProfile.create({
+        fullName: `Default Member`,
+        profilePicture: `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png`,
+        dateOfBirth: `${new Date()}`,
+        UserId: data.id,
+        /** user id ini pentinng dan harus ada
+         * supaya bisa mendapatkna data userprofile
+         */
+      });
       res.redirect("/login");
     } catch (error) {
       console.log(error);

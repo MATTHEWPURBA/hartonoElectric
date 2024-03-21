@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.belongsToMany(models.Product, {
         through: models.Cart,
-        foreignKey: "Userid",
-        otherKey: "ProductId",
+        foreignKey: "ProductId",
+        otherKey: "UserId",
       });
       User.hasOne(models.UserProfile, {
         foreignKey: "UserId",

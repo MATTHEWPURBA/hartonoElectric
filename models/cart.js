@@ -11,9 +11,16 @@ module.exports = (sequelize, DataTypes) => {
     {
       UserId: DataTypes.INTEGER,
       ProductId: DataTypes.INTEGER,
-      quantity: DataTypes.INTEGER
+      quantity: DataTypes.INTEGER,
+      isPaid: DataTypes.BOOLEAN
     },
     {
+      hooks:{
+        beforeCreate(instance, option){
+          instance.quantity = 1;
+          instance.isPaid = false;
+        }
+      },
       sequelize,
       modelName: "Cart",
     }

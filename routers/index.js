@@ -44,9 +44,14 @@ router.use((req, res, next) => {
 //middleware
 
 router.get("/", Controller.home);
+router.get("/cart", Controller.getCart);
+router.get("/cart/increase/:id", Controller.getIncreaseCart);
+router.get("/cart/decrease/:id", Controller.getDecreaseCart);
+router.get("/cart/pay/:id", Controller.pay);
 router.get('/user/edit/profile/:id', Controller.getEditUserProfile)
 router.post('/user/edit/profile/:id', Controller.postEditUserProfile)
 router.get('/user/:id', Controller.readUser)
+router.get('/addToCart/:id', Controller.addToCart)
 
 
 //admin
