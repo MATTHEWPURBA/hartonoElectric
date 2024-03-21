@@ -11,7 +11,11 @@
         <div class="d-flex justify-content-center my-3">
             <a href="/admin/addProduct"><button class=" btn btn-primary">Add Product</button></a>
         </div>
-
+        <div>
+          <% if (deleted) { %>
+           <p style="color: red; text-align: center;"><%= `product with name ${deleted} has been deleted` %></p>
+          <% } %>
+        </div>
         <table class="table">
             <thead style="text-align: center;">
               <tr>

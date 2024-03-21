@@ -54,6 +54,7 @@ router.get("/admin/addProduct", AdminController.getFormAdd);
 router.post("/admin/addProduct", AdminController.postFormAdd);
 router.get("/admin/edit/:id", AdminController.getEdit);
 router.post("/admin/edit/:id", AdminController.postEdit);
+router.get("/admin/delete/:id", AdminController.destroyProduct);
 
 // router.use("/incubators", require("./incubators"));
 // router.use("/startUp", require("./startUp"));

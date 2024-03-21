@@ -4,6 +4,7 @@ const convert = require('../helper/formatCreated');
 class AdminController {
   static async adminPage(req, res) {
     try {
+      let { deleted } = req.query
       let data = await Product.findAll({
         include: {
           model: Category,
@@ -11,7 +12,7 @@ class AdminController {
         order: [["name"]],
       });
       // res.send(data)
-      res.render("admin", { data, title: "Admin", convert:convert });
+      res.render("admin", { data, title: "Admin", convert:convert, deleted });
     } catch (error) {
       res.send(error);
     }
@@ -19,6 +20,7 @@ class AdminController {
 
   static async getFormAdd(req, res) {
     try {
+      
       let data = await Category.findAll();
       let { error, path } = req.query;
       res.render("add-product", { data, error, path });
@@ -83,6 +85,16 @@ class AdminController {
       } else {
         res.send(error);
       }
+    }
+  }
+  static async destroyProduct(req, res) {
+    try {
+      let { id } = req.params
+      let deleted = await Product.findByPk(id)
+      await Product.destroy(({ where: { id: id } }))
+      res.redirect(`/admin?deleted=${deleted.name}`)
+    } catch (error) {
+      res.send(error)
     }
   }
 }
