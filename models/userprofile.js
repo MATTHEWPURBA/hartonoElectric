@@ -4,6 +4,9 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class UserProfile extends Model {
+    get formattedDate(){
+      return this.dateOfBirth.toISOString().split('T')[0]
+    }
     static associate(models) {
       UserProfile.belongsTo(models.User)
     }

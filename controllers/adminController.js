@@ -5,6 +5,8 @@ class AdminController {
   static async adminPage(req, res) {
     try {
       let { deleted } = req.query
+      let { userId } = req.session
+      let user = await User.findAll({ where: { id: userId } })
       let data = await Product.findAll({
         include: {
           model: Category,
@@ -12,7 +14,7 @@ class AdminController {
         order: [["name"]],
       });
       // res.send(data)
-      res.render("admin", { data, title: "Admin", convert:convert, deleted });
+      res.render("admin", { data, title: "Admin", convert:convert, deleted, user });
     } catch (error) {
       res.send(error);
     }
@@ -20,10 +22,11 @@ class AdminController {
 
   static async getFormAdd(req, res) {
     try {
-      
+      let { userId } = req.session
+      let user = await User.findAll({ where: { id: userId } })
       let data = await Category.findAll();
       let { error, path } = req.query;
-      res.render("add-product", { data, error, path });
+      res.render("add-product", { data, error, path, user });
       // res.send(data)
     } catch (error) {
       res.send(error);
@@ -51,12 +54,14 @@ class AdminController {
   }
   static async getEdit(req, res) {
     try {
+      let { userId } = req.session
+      let user = await User.findAll({ where: { id: userId } })
       let {id} = req.params
       let category = await Category.findAll();
       let product = await Product.findByPk(id)
 
       let { error, path } = req.query;
-      res.render("edit-product", { category, product, error, path });
+      res.render("edit-product", { category, product, error, path, user });
       // res.send(data)
     } catch (error) {
       res.send(error);

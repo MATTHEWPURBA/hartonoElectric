@@ -44,7 +44,9 @@ router.use((req, res, next) => {
 //middleware
 
 router.get("/", Controller.home);
-
+router.get('/user/edit/profile/:id', Controller.getEditUserProfile)
+router.post('/user/edit/profile/:id', Controller.postEditUserProfile)
+router.get('/user/:id', Controller.readUser)
 
 
 //admin
