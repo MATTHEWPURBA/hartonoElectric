@@ -1,7 +1,5 @@
 const express = require("express");
 const Controller = require("../controllers/controller");
-const AdminController = require("../controllers/adminController");
-const userController = require("../controllers/userController");
 const router = express.Router();
 
 //get register
