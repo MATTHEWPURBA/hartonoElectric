@@ -5,18 +5,18 @@ class Controller {
     try {
       let data = await Product.findAll({
         attributes: {
-          exclude: ['createdAt', 'updatedAt']
-        }
-        ,include: {
+          exclude: ["createdAt", "updatedAt"],
+        },
+        include: {
           model: Category,
-          attributes:{
-            exclude:['createdAt', 'updatedAt']
-          }
-        }
-      })
-      res.render('home', {data, title:'Home'})
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+        },
+      });
+      res.render("home", { data, title: "Home" });
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
   }
 }

@@ -4,11 +4,11 @@ module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
       Product.belongsTo(models.Category);
-      Product.belongsToMany(models.User,{
-        through:models.Cart,
-        foreignKey:'ProductId',
-        otherKey:'UserId'
-      })
+      Product.belongsToMany(models.User, {
+        through: models.Cart,
+        foreignKey: "ProductId",
+        otherKey: "UserId",
+      });
     }
     get formattedPrice(){
       return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(this.price)
