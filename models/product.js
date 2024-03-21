@@ -5,6 +5,28 @@ module.exports = (sequelize, DataTypes) => {
     get formattedPrice() {
       return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR" }).format(this.price);
     }
+
+    static async readProduct(Category){
+      try {
+        let option = {
+          attributes: {
+            exclude: ["createdAt", "updatedAt"],
+          },
+          include: {
+            model: Category,
+            attributes: {
+              exclude: ["createdAt", "updatedAt"],
+            }
+          }, where: {},
+          order: [['name', 'asc']]
+        }
+        let data = await Product.findAll(option);
+        return data
+      } catch (error) {
+        throw error
+      }
+    }
+
     static associate(models) {
       Product.belongsTo(models.Category);
       Product.belongsToMany(models.User, {
