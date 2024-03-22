@@ -36,20 +36,33 @@ router.use((req, res, next) => {
     //oleh req session di controller dan di oper ke req sesion
     //yang ada di index router sekarang ini
   }
-  //console.log("Time:", Date.now());
-  //next();
 });
 //
 
 //middleware
 
 router.get("/", Controller.home);
+router.get("/cart", Controller.getCart);
+router.get("/cart/increase/:id", Controller.getIncreaseCart);
+router.get("/cart/decrease/:id", Controller.getDecreaseCart);
+router.get("/cart/pay/:id", Controller.pay);
+
+router.get('/user/edit/profile/:id', Controller.getEditUserProfile)
+router.post('/user/edit/profile/:id', Controller.postEditUserProfile)
+router.get('/user/:id', Controller.readUser)
+router.get('/addToCart/:id', Controller.addToCart)
+
 
 router.get("/admin", AdminController.adminPage);
 
 router.get("/admin/addProduct", AdminController.getFormAdd);
 router.post("/admin/addProduct", AdminController.postFormAdd);
-// router.use("/incubators", require("./incubators"));
-// router.use("/startUp", require("./startUp"));
+router.get("/admin/edit/:id", AdminController.getEdit);
+router.post("/admin/edit/:id", AdminController.postEdit);
+
+router.get("/admin/delete/:id", AdminController.destroyProduct);
+
+
+
 
 module.exports = router;
